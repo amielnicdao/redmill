@@ -1,25 +1,20 @@
 $(document).ready(function () {
-        
-        var compNumber = Math.floor(Math.random() * 101) + 19;
 
+        var compNumber = Math.floor(Math.random() * 101) + 19;
         var gamerNumber = 0;
         var wins = 0;
         var losses = 0;
 
-
-      
         $("#computer-text").text("Match this number: " + compNumber);
         $("#yourNumber-text").text("Your current number: " + gamerNumber);
         $("#wins-text").text("Wins: " + wins);
         $("#losses-text").text("Losses: " + losses);
 
-      
         var blue = Math.floor(Math.random() * 12) + 1;
         var green = Math.floor(Math.random() * 12) + 1;
         var purple = Math.floor(Math.random() * 12) + 1;
         var red = Math.floor(Math.random() * 12) + 1;
 
-        
         function startGame() {
                 compNumber = Math.floor(Math.random() * 101) + 19;
                 $("#computer-text").text("Match this number: " + compNumber);
@@ -31,62 +26,41 @@ $(document).ready(function () {
                 $("#yourNumber-text").text("Your current number: " + gamerNumber);
         }
 
+        function winOrLose() {
+                if (gamerNumber == compNumber) {
+                        wins++;
+                        $("#wins-text").text("Wins: " + wins);
+                        startGame();
+                }
+                
+                else if (gamerNumber > compNumber) {
+                        losses++;
+                        $("#losses-text").text("Losses: " + losses);
+                        startGame();
+                }
+        }
 
-        function winning() {
-                wins++;
-                $("#wins-text").text("Wins: " + wins);
-                startGame();
-        }
-       
-        function losing() {
-                losses++;
-                $("#losses-text").text("Losses: " + losses);
-                startGame();
-        }
-        
         $(".blue").on("click", function () {
                 gamerNumber = gamerNumber + blue;
                 $("#yourNumber-text").text("Your current number: " + gamerNumber);
-               
-                if (gamerNumber == compNumber) {
-                        winning();
-                }
-                else if (gamerNumber > compNumber) {
-                        losing();
-                }
+                winOrLose();
         });
 
         $(".green").on("click", function () {
                 gamerNumber = gamerNumber + green;
                 $("#yourNumber-text").text("Your current number: " + gamerNumber);
-               
-                if (gamerNumber == compNumber) {
-                        winning();
-                }
-                else if (gamerNumber > compNumber) {
-                        losing();
-                }
+                winOrLose();
         })
+
         $(".purple").on("click", function () {
-                 gamerNumber = gamerNumber + purple;
+                gamerNumber = gamerNumber + purple;
                 $("#yourNumber-text").text("Your current number: " + gamerNumber);
-              
-                if (gamerNumber == compNumber) {
-                        winning();
-                }
-                else if (gamerNumber > compNumber) {
-                        losing();
-                }
+                winOrLose();
         })
+
         $(".red").on("click", function () {
                 gamerNumber = gamerNumber + red;
                 $("#yourNumber-text").text("Your current number: " + gamerNumber);
-             
-                if (gamerNumber == compNumber) {
-                        winning();
-                }
-                else if (gamerNumber > compNumber) {
-                        losing();
-                }
+                winOrLose();
         });
 }); 
