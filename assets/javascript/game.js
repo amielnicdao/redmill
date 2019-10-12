@@ -1,21 +1,56 @@
-var randomNumber=[];
-var crystalNumber=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+$(document).ready(function() {
+
 var wins=0;
 var losses=0;
-var score=0;
-getNumber();
+var yourNumber=0;
+// getNumber();
+winOrLoss();
 
-var computerText=$("computer-text");
-var userText=$("user-text");
+var computerText=$("#computer-text");
+var yourNumberText=$("#yourNumber-text");
 var winsText=$("#wins-text");
 var lossesText=$("#losses-text");
 
-function getNumber() {
-    randomNumber=Math.floor(Math.random() * 101) + 19;
-    console.log(randomNumber);
+function computerNumber () {
+Math.floor(Math.random() * 101) + 19;
+console.log(computerNumber);
+};
+
+var blueCrystal=Math.floor(Math.random() * 12) + 1;
+var greenCrystal=Math.floor(Math.random() * 12) + 1;
+var purpleCrystal=Math.floor(Math.random() * 12) + 1;
+var redCrystal=Math.floor(Math.random() * 12) + 1;
+
+function winOrLoss () {
+    if (score === computerNumber) {
+        wins++;
+        $("#wins-text").html(winsText);
+        computerNumber();
+        $("#computer-text").html(computerText);
+        score=0;
+    }
+    else if (score > computerNumber) {
+        loss++;
+        $("#losses-text").html(lossesText);
+        computerNumber();
+        ("#computer-text").html(computerText);
+        score=0;
+    }
 }
 
-// $(document).ready(function() {
+$(".blue").on("click", function () {
+    score=blueCrystal + score;
+    $("#yourNumber-text").html(yourNumber);
+    winOrLoss();
+});
 
+   
 
-// };
+});
+
+// //get number for crystals
+
+// //function that checks win or loss.. 2 arguments. if/else
+
+// //on click functions for each crystal
+
