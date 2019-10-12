@@ -1,56 +1,92 @@
-$(document).ready(function() {
+$(document).ready(function () {
+        
+        var compNumber = Math.floor(Math.random() * 101) + 19;
 
-var wins=0;
-var losses=0;
-var yourNumber=0;
-// getNumber();
-winOrLoss();
+        var gamerNumber = 0;
+        var wins = 0;
+        var losses = 0;
 
-var computerText=$("#computer-text");
-var yourNumberText=$("#yourNumber-text");
-var winsText=$("#wins-text");
-var lossesText=$("#losses-text");
 
-function computerNumber () {
-Math.floor(Math.random() * 101) + 19;
-console.log(computerNumber);
-};
+      
+        $("#computer-text").text("Match this number: " + compNumber);
+        $("#yourNumber-text").text("Your current number: " + gamerNumber);
+        $("#wins-text").text("Wins: " + wins);
+        $("#losses-text").text("Losses: " + losses);
 
-var blueCrystal=Math.floor(Math.random() * 12) + 1;
-var greenCrystal=Math.floor(Math.random() * 12) + 1;
-var purpleCrystal=Math.floor(Math.random() * 12) + 1;
-var redCrystal=Math.floor(Math.random() * 12) + 1;
+      
+        var blue = Math.floor(Math.random() * 12) + 1;
+        var green = Math.floor(Math.random() * 12) + 1;
+        var purple = Math.floor(Math.random() * 12) + 1;
+        var red = Math.floor(Math.random() * 12) + 1;
 
-function winOrLoss () {
-    if (score === computerNumber) {
-        wins++;
-        $("#wins-text").html(winsText);
-        computerNumber();
-        $("#computer-text").html(computerText);
-        score=0;
-    }
-    else if (score > computerNumber) {
-        loss++;
-        $("#losses-text").html(lossesText);
-        computerNumber();
-        ("#computer-text").html(computerText);
-        score=0;
-    }
-}
+        
+        function startGame() {
+                compNumber = Math.floor(Math.random() * 101) + 19;
+                $("#computer-text").text("Match this number: " + compNumber);
+                blue = Math.floor(Math.random() * 12) + 1;
+                green = Math.floor(Math.random() * 12) + 1;
+                purple = Math.floor(Math.random() * 12) + 1;
+                red = Math.floor(Math.random() * 12) + 1;
+                gamerNumber = 0;
+                $("#yourNumber-text").text("Your current number: " + gamerNumber);
+        }
 
-$(".blue").on("click", function () {
-    score=blueCrystal + score;
-    $("#yourNumber-text").html(yourNumber);
-    winOrLoss();
-});
 
-   
+        function winning() {
+                wins++;
+                $("#wins-text").text("Wins: " + wins);
+                startGame();
+        }
+       
+        function losing() {
+                losses++;
+                $("#losses-text").text("Losses: " + losses);
+                startGame();
+        }
+        
+        $(".blue").on("click", function () {
+                gamerNumber = gamerNumber + blue;
+                $("#yourNumber-text").text("Your current number: " + gamerNumber);
+               
+                if (gamerNumber == compNumber) {
+                        winning();
+                }
+                else if (gamerNumber > compNumber) {
+                        losing();
+                }
+        });
 
-});
-
-// //get number for crystals
-
-// //function that checks win or loss.. 2 arguments. if/else
-
-// //on click functions for each crystal
-
+        $(".green").on("click", function () {
+                gamerNumber = gamerNumber + green;
+                $("#yourNumber-text").text("Your current number: " + gamerNumber);
+               
+                if (gamerNumber == compNumber) {
+                        winning();
+                }
+                else if (gamerNumber > compNumber) {
+                        losing();
+                }
+        })
+        $(".purple").on("click", function () {
+                 gamerNumber = gamerNumber + purple;
+                $("#yourNumber-text").text("Your current number: " + gamerNumber);
+              
+                if (gamerNumber == compNumber) {
+                        winning();
+                }
+                else if (gamerNumber > compNumber) {
+                        losing();
+                }
+        })
+        $(".red").on("click", function () {
+                gamerNumber = gamerNumber + red;
+                $("#yourNumber-text").text("Your current number: " + gamerNumber);
+             
+                if (gamerNumber == compNumber) {
+                        winning();
+                }
+                else if (gamerNumber > compNumber) {
+                        losing();
+                }
+        });
+}); 
