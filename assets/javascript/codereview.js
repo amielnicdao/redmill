@@ -16,60 +16,54 @@ $(document).ready(function () {
     var red;
 
     function chooseValues() {
-            blue = Math.floor(Math.random() * 12) + 1;
-            green = Math.floor(Math.random() * 12) + 1;
-            purple = Math.floor(Math.random() * 12) + 1;
-            red = Math.floor(Math.random() * 12) + 1;
+        blue = Math.floor(Math.random() * 12) + 1;
+        green = Math.floor(Math.random() * 12) + 1;
+        purple = Math.floor(Math.random() * 12) + 1;
+        red = Math.floor(Math.random() * 12) + 1;
     }
 
     function startGame() {
-            compNumber = Math.floor(Math.random() * 101) + 19;
-            $("#computer-text").text("Match this number: " + compNumber);
-            chooseValues();
-            gamerNumber = 0;
-            $("#yourNumber-text").text("Your current number: " + gamerNumber);
+        compNumber = Math.floor(Math.random() * 101) + 19;
+        $("#computer-text").text("Match this number: " + compNumber);
+        chooseValues();
+        gamerNumber = 0;
+        $("#yourNumber-text").text("Your current number: " + gamerNumber);
     }
 
     function winOrLose() {
-            if (gamerNumber == compNumber) {
-                    wins++;
-                    $("#wins-text").text("Wins: " + wins);
-                    startGame();
-            }
+        if (gamerNumber == compNumber) {
+            wins++;
+            $("#wins-text").text("Wins: " + wins);
+            startGame();
+        }
 
-            else if (gamerNumber > compNumber) {
-                    losses++;
-                    $("#losses-text").text("Losses: " + losses);
-                    startGame();
-            }
+        else if (gamerNumber > compNumber) {
+            losses++;
+            $("#losses-text").text("Losses: " + losses);
+            startGame();
+        }
     }
 
-    function handleClick(color){
-            gamerNumber = gamerNumber + color;
-            $("#yourNumber-text").text("Your current number: " + gamerNumber);
-            winOrLose();
+    function handleClick(color) {
+        gamerNumber = gamerNumber + color;
+        $("#yourNumber-text").text("Your current number: " + gamerNumber);
+        winOrLose();
     }
 
     $(".blue").on("click", function () {
-            handleClick(blue);
+        handleClick(blue);
     });
 
     $(".green").on("click", function () {
-            gamerNumber = gamerNumber + green;
-            $("#yourNumber-text").text("Your current number: " + gamerNumber);
-            winOrLose();
+        handleClick(green);
     })
 
     $(".purple").on("click", function () {
-            gamerNumber = gamerNumber + purple;
-            $("#yourNumber-text").text("Your current number: " + gamerNumber);
-            winOrLose();
+        handleClick(purple);
     })
 
     $(".red").on("click", function () {
-            gamerNumber = gamerNumber + red;
-            $("#yourNumber-text").text("Your current number: " + gamerNumber);
-            winOrLose();
+        handleClick(red);
     });
     chooseValues();
 }); 
